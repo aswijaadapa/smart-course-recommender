@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}About - Smart Course Recommender{% endblock %}
+{% block content %}
+<div class="card p-4">
+    <h2>About This Project</h2>
+    <p class="text-muted">
+        The Smart Course Recommendation System is a content-based recommender
+        built with Django and Scikit-learn. It analyzes your skills, interests,
+        career goal, and experience level, then uses TF-IDF vectorization and
+        cosine similarity to match you against a catalog of courses &mdash;
+        recommending the ones most relevant to you.
+    </p>
+    <h5 class="mt-3">Tech Stack</h5>
+    <ul class="text-muted">
+        <li>Backend: Python, Django</li>
+        <li>Machine Learning: Pandas, NumPy, Scikit-learn (TF-IDF + Cosine Similarity)</li>
+        <li>Frontend: HTML, CSS, Bootstrap, JavaScript</li>
+        <li>Database: SQLite</li>
+    </ul>
+</div>
+{% endblock %}

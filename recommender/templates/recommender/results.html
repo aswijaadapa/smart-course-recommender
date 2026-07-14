@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Your Recommendations{% endblock %}
+{% block content %}
+<h2 class="mb-2">Your Recommended Courses</h2>
+<p class="text-muted mb-4">
+    Based on: <strong>{{ form_data.career_goal }}</strong>
+    ({{ form_data.experience_level }} level, {{ form_data.weekly_study_hours }} hrs/week)
+</p>
+
+<div class="row">
+    {% for course, score in results %}
+        <div class="col-md-6 mb-4">
+            <div class="card course-card p-3 h-100">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5>{{ course.course_name }}</h5>
+                    <span class="badge bg-success similarity-badge">{{ score|floatformat:2 }} match</span>
+                </div>
+                <p class="mb-1">
+                    <span class="badge bg-secondary">{{ course.platform }}</span>
+                    <span class="badge bg-info text-dark">{{ course.difficulty }}</span>
+                </p>
+                <p class="text-muted small mb-1">⏱ {{ course.duration }} &nbsp; ⭐ {{ course.rating }}</p>
+                <p class="small mb-1"><strong>Skills:</strong> {{ course.skills_required }}</p>
+                <p class="small">{{ course.description|truncatewords:25 }}</p>
+                {% if course.id in saved_ids %}
+                    <button class="btn btn-secondary btn-sm mt-auto" disabled>Already Saved</button>
+                {% else %}
+                    <a href="{% url 'save_course' course.id %}" class="btn btn-outline-primary btn-sm mt-auto">Save Course</a>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">No matching courses found. Try broadening your interests or skills.</p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'recommend_form' %}" class="btn btn-link">← Try different inputs</a>
+{% endblock %}

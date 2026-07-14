@@ -1,0 +1,25 @@
+body {
+    background-color: #f7f9fc;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-radius: 12px;
+}
+
+.similarity-badge {
+    font-size: 0.85rem;
+}
+
+.hero {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white;
+    border-radius: 16px;
+    padding: 60px 40px;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    transition: transform 0.2s ease-in-out;
+}

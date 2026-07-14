@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Recommendation History{% endblock %}
+{% block content %}
+<h2 class="mb-4">Your Recommendation History</h2>
+
+{% for entry in history %}
+    <div class="card p-3 mb-3">
+        <div class="d-flex justify-content-between">
+            <h6>{{ entry.career_goal|default:"Untitled search" }}</h6>
+            <span class="text-muted small">{{ entry.created_at|date:"M d, Y H:i" }}</span>
+        </div>
+        <p class="small text-muted mb-2">Profile used: {{ entry.query_text|truncatewords:15 }}</p>
+        <div class="d-flex flex-wrap gap-2">
+            {% for course in entry.recommended_courses.all %}
+                <span class="badge bg-light text-dark border">{{ course.course_name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+{% empty %}
+    <p class="text-muted">No recommendation history yet. <a href="{% url 'recommend_form' %}">Get your first recommendations</a>.</p>
+{% endfor %}
+{% endblock %}

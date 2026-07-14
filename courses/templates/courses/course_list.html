@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Browse Courses{% endblock %}
+{% block content %}
+<h2 class="mb-4">Browse Courses</h2>
+
+<form method="GET" class="row g-2 mb-4">
+    <div class="col-md-4">
+        <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by course name...">
+    </div>
+    <div class="col-md-3">
+        <select name="difficulty" class="form-select">
+            <option value="">All Difficulties</option>
+            {% for value, label in difficulty_choices %}
+                <option value="{{ value }}" {% if selected_difficulty == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3">
+        <select name="platform" class="form-select">
+            <option value="">All Platforms</option>
+            {% for p in platforms %}
+                <option value="{{ p }}" {% if selected_platform == p %}selected{% endif %}>{{ p }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+</form>
+
+<div class="row">
+    {% for course in courses %}
+        <div class="col-md-4 mb-4">
+            <div class="card course-card p-3 h-100">
+                <h5>{{ course.course_name }}</h5>
+                <p class="mb-1"><span class="badge bg-secondary">{{ course.platform }}</span>
+                   <span class="badge bg-info text-dark">{{ course.difficulty }}</span></p>
+                <p class="text-muted small mb-1">⏱ {{ course.duration }} &nbsp; ⭐ {{ course.rating }}</p>
+                <p class="small">{{ course.description|truncatewords:20 }}</p>
+                <a href="{% url 'save_course' course.id %}" class="btn btn-outline-primary btn-sm mt-auto">Save</a>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">No courses match your filters.</p>
+    {% endfor %}
+</div>
+{% endblock %}

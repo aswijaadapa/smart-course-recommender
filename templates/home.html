@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Home - Smart Course Recommender{% endblock %}
+{% block content %}
+<div class="hero text-center mb-5">
+    <h1 class="display-5 fw-bold">Find the right course, faster.</h1>
+    <p class="lead mt-3">
+        Tell us your skills, interests, and career goal — our ML-powered engine
+        recommends the courses that actually fit you.
+    </p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'recommend_form' %}" class="btn btn-light btn-lg mt-3">Get My Recommendations</a>
+    {% else %}
+        <a href="{% url 'register' %}" class="btn btn-light btn-lg mt-3">Get Started</a>
+    {% endif %}
+</div>
+
+<div class="row text-center">
+    <div class="col-md-4 mb-4">
+        <div class="card p-4 h-100">
+            <h5>🎯 Personalized</h5>
+            <p class="text-muted">Recommendations based on your actual skills, goals, and available time — not generic bestseller lists.</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card p-4 h-100">
+            <h5>🧠 ML-Powered</h5>
+            <p class="text-muted">Uses TF-IDF and Cosine Similarity to match your profile against 200+ real course descriptions.</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card p-4 h-100">
+            <h5>📈 Track Progress</h5>
+            <p class="text-muted">Save favorite courses and revisit your recommendation history any time.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
