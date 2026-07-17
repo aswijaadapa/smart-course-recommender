@@ -6,7 +6,8 @@
         <div class="card p-4">
             <h2 class="mb-3">Login</h2>
             <form method="POST" novalidate>
-                {% csrf_token %}
+                 {% csrf_token %}
+                {{ form.non_field_errors }}
                 {% for field in form %}
                     <div class="mb-3">
                         <label class="form-label">{{ field.label }}</label>
