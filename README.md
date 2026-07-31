@@ -85,5 +85,6 @@ via management command, user management.
 platform), save favorite courses, recommendation history, responsive
 Bootstrap UI, form validation, friendly error handling.
 
+👤 Author Built by Aswija Devi Adapa Hemasri Cheparthi Jaya Hasini Kothapalli as a portfolio project. GitHub: @aswijaadapa @hemasricheparthi @KJH666-star
 ---
 
